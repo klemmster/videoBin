@@ -8,7 +8,7 @@ gem 'rails', '3.0.5'
 gem 'sqlite3'
 
 # RVideo for Video Conversion
-gem 'rvideo'
+#gem 'rvideo'
 # Use unicorn as the web server
 # gem 'unicorn'
 
