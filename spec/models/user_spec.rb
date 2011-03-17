@@ -5,7 +5,7 @@ describe User do
     @attr = { :name => "Test User",
               :email => "Mail@test.com",
               :password => "Foobar1",
-              :password_confirmation => "Foobar"
+              :password_confirmation => "Foobar1"
     }
   end
   it "should create a new instance given valid arguments" do
@@ -84,23 +84,23 @@ describe User do
       hash = @attr.merge(:password => long, :password_confirmation => long)
       User.new(hash).should_not be_valid
     end
-  
-    describe "password encryption" do
-      before(:each) do
-        @user = User.create!(@attr.merge( :email => "NewMail@test.com"))
-      end
-      it "should have an encrypted password" do
-        @user.should respond_to(:encrypted_password)
-      end
-      it "should set the encrypted password" do
-        @user.encrypted_password.should_not be_blank
-      end
-      it "should be true if the passwords match" do
-        @user.has_password?(@attr[:passsword]).should be_true
-      end
-      it "should be false if the passwords don't match" do
-        @user.has_password=("invalid").should be_false
-      end
+  end
+
+  describe "password encryption" do
+    before(:each) do
+      @user = User.create!(@attr)
+    end
+    it "should have an encrypted password" do
+      @user.should respond_to(:encrypted_password)
+    end
+    it "should set the encrypted password" do
+      @user.encrypted_password.should_not be_blank
+    end
+    it "should be true if the passwords match" do
+      @user.has_password?(@attr[:passsword]).should be_true
+    end
+    it "should be false if the passwords don't match" do
+      @user.has_password=("invalid").should be_false
     end
   end
 end
