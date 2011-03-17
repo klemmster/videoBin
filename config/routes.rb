@@ -1,13 +1,5 @@
 SampleApp::Application.routes.draw do
 
-  get "videos/new"
-
-  get "videos/show"
-
-  get "videos/delete"
-
-  get "videos/update"
-
   match '/signup', :to => 'users#new'
   match '/contact', :to => 'pages#contact'
   match '/about', :to => 'pages#about'
@@ -20,6 +12,7 @@ SampleApp::Application.routes.draw do
   get "pages/help"
   
   resources :users
+  resources :videos
 
   
   # The priority is based upon order of creation:
