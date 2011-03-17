@@ -4,7 +4,7 @@ describe User do
   before(:each) do
     @attr = { :name => "Test User",
               :email => "Mail@test.com",
-              :password => "Foobar",
+              :password => "Foobar1",
               :password_confirmation => "Foobar"
     }
   end
@@ -91,6 +91,15 @@ describe User do
       end
       it "should have an encrypted password" do
         @user.should respond_to(:encrypted_password)
+      end
+      it "should set the encrypted password" do
+        @user.encrypted_password.should_not be_blank
+      end
+      it "should be true if the passwords match" do
+        @user.has_password?(@attr[:passsword]).should be_true
+      end
+      it "should be false if the passwords don't match" do
+        @user.has_password=("invalid").should be_false
       end
     end
   end
