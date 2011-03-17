@@ -15,4 +15,9 @@
 class Video < ActiveRecord::Base
   attr_accessible :name, :description, :length, :hrefs
   serialize :hrefs #, Array
+
+  validates :length,
+            :numericality => { :greater_than => 100}
+  validates :name, :presence =>true
+  validates :description, :presence => true
 end

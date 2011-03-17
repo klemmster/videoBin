@@ -84,9 +84,14 @@ describe User do
       hash = @attr.merge(:password => long, :password_confirmation => long)
       User.new(hash).should_not be_valid
     end
-
-    it "should have an encrypted password" do
-      @user.should respond_to(:encrypted_password)
+  
+    describe "password encryption" do
+      before(:each) do
+        @user = User.create!(@attr.merge( :email => "NewMail@test.com"))
+      end
+      it "should have an encrypted password" do
+        @user.should respond_to(:encrypted_password)
+      end
     end
   end
 end
