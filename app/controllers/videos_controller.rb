@@ -4,10 +4,11 @@ class VideosController < ApplicationController
   end
 
   def new
+    @video = Video.create(params[:video])
   end
 
   def show
-	@video =Video.find(params[:id])
+    @video =Video.find(params[:id])
   end
 
   def delete

@@ -43,6 +43,9 @@ GEM
     mime-types (1.16)
     nokogiri (1.4.4)
     nokogiri (1.4.4-x86-mingw32)
+    paperclip (2.3.8)
+      activerecord
+      activesupport
     polyglot (0.3.1)
     rack (1.2.2)
     rack-mount (0.6.13)
@@ -95,6 +98,7 @@ PLATFORMS
 
 DEPENDENCIES
   annotate-models (= 1.0.4)
+  paperclip
   rails (= 3.0.5)
   rspec-rails (~> 2.4)
   sqlite3
