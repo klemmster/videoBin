@@ -1,5 +1,10 @@
 <h1>Videos#new</h1>
 <p>Find me in app/views/videos/new.html.erb</p>
-<%= form_for(@video) do |form| %>
-    <%= form.file_field :origfile %>
+<%= form_for @video, :html => { :multipart => true }  do |form| %>
+    <div class="field">
+      <%= form.file_field :origfile %>
+    </div>
+    <div class="actions">
+      <%= form.submit "Upload" %>
+    </div>
 <% end %>

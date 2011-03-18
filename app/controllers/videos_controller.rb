@@ -3,6 +3,10 @@ class VideosController < ApplicationController
     @videos = Video.all
   end
 
+  def create
+
+  end
+
   def new
     @video = Video.create(params[:video])
   end
