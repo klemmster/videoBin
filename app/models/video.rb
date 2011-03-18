@@ -28,8 +28,21 @@ class Video < ActiveRecord::Base
   validates :description, :presence => true
 
   has_attached_file :origfile, :styles => {}
+  
+  before_post_process :confirm_upload
+  after_post_process :confirm_converting_done
 
   def isDoneConverting?
     self.doneConverting
   end
+
+  private
+    def confirm_upload
+      #TODO: Inform user about successful upload, conversion started
+    end
+
+    def confirm_converting_done
+      self.doneConverting = true
+      #TODO: Possibly inform user
+    end
 end
