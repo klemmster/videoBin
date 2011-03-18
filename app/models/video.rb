@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20110318135654
+# Schema version: 20110318152401
 #
 # Table name: videos
 #
@@ -14,6 +14,7 @@
 #  origfile_content_type :string(255)
 #  origfile_file_size    :integer
 #  origfile_updated_at   :datetime
+#  doneConverting        :boolean
 #
 
 class Video < ActiveRecord::Base
@@ -27,4 +28,8 @@ class Video < ActiveRecord::Base
   validates :description, :presence => true
 
   has_attached_file :origfile, :styles => {}
+
+  def isDoneConverting?
+    self.doneConverting
+  end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110318135654) do
+ActiveRecord::Schema.define(:version => 20110318152401) do
 
   create_table "users", :force => true do |t|
     t.string   "name"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(:version => 20110318135654) do
     t.string   "origfile_content_type"
     t.integer  "origfile_file_size"
     t.datetime "origfile_updated_at"
+    t.boolean  "doneConverting"
   end
 
 end
