@@ -4,11 +4,17 @@ class VideosController < ApplicationController
   end
 
   def create
-
+    @video = Video.new(params[:video])
+    @video.length = 400
+    if @video.save
+      #TODO
+    else
+      render :new 
+    end
   end
 
   def new
-    @video = Video.create(params[:video])
+    @video = Video.new
   end
 
   def show
