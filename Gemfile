@@ -32,7 +32,6 @@ gem 'sqlite3-ruby','1.3.3', :require => 'sqlite3'
 #   gem 'webrat'
 # end
 
-
 group :test do
   gem 'webrat', '0.7.1'
 end
