@@ -18,7 +18,7 @@
 #
 
 class Video < ActiveRecord::Base
-  attr_accessible :name, :description, :hrefs
+  attr_accessible :name, :description, :hrefs, :origfile
   attr_accessor :origfile
   serialize :hrefs #, Array
 
