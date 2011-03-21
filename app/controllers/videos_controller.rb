@@ -34,8 +34,9 @@ class VideosController < ApplicationController
   end
 
   def update
-    @video = Video.find(params[:video])
+    @video = Video.find(params[:id])
     @video.update_attributes(params[:video])
+    redirect_to videos_url
   end
 
 end

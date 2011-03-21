@@ -34,9 +34,16 @@ describe VideosController do
   end
 
   describe "GET 'update'" do
-    it "should be successful" do
+    it "Edit Page should open" do
       get :edit, :id => @video
       response.should be_success
+    end
+
+    it "Should update Video Attributes" do
+      put :update, :id => @video, :video => @attr
+      @video.reload
+      @video.name.should  == @attr[:name]
+      @video.description.should == @attr[:description]
     end
   end
 
