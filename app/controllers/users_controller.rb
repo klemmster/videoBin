@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def new
     @title = "Sign up"
+    @user = User.new
   end
 
   def index
@@ -14,7 +15,7 @@ class UsersController < ApplicationController
 
   def create
   @user = User.create( params[:user] )
-end
+  end
 
 
 end

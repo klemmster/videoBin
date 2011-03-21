@@ -40,7 +40,7 @@ class Video < ActiveRecord::Base
     end
 
     def confirm_converting_done
-      self.doneConverting = false
+      #self.doneConverting = true
       #TODO: Possibly inform user
     end
 #
