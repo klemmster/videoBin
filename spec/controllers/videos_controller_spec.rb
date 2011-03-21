@@ -11,7 +11,7 @@ describe VideosController do
   end
 
   describe "GET 'new'" do
-    it "should create a new video" do
+    it "should ope new video page" do
       get 'new'
       response.should be_success
     end
