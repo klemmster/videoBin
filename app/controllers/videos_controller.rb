@@ -7,7 +7,7 @@ class VideosController < ApplicationController
     @video = Video.new(params[:video])
     @video.length = 400
     if @video.save
-      #TODO
+      redirect_to videos_url
     else
       render :new 
     end

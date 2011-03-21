@@ -10,6 +10,7 @@ tmp/**/*
 .DS_Store
 db/cstore/**
 db/sphinx/**
+db/development.sqlite3
 doc/api
 doc/app
 doc/plugins
