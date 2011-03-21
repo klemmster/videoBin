@@ -35,7 +35,7 @@ describe VideosController do
 
   describe "GET 'update'" do
     it "should be successful" do
-      get 'update'
+      get :edit, :id => @video
       response.should be_success
     end
   end

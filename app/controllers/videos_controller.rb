@@ -28,7 +28,14 @@ class VideosController < ApplicationController
     Video.find(params[:id]).destroy
     redirect_to videos_url
   end
+
+  def edit
+    @video = Video.find(params[:id])
+  end
+
   def update
+    @video = Video.find(params[:video])
+    @video.update_attributes(params[:video])
   end
 
 end
