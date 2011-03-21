@@ -1,22 +1,27 @@
 # == Schema Information
-# Schema version: 20110317215830
+# Schema version: 20110321005739
 #
 # Table name: users
 #
-#  id                 :integer         not null, primary key
-#  name               :string(255)
-#  email              :string(255)
-#  created_at         :datetime
-#  updated_at         :datetime
-#  encrypted_password :string(255)
-#  salt               :string(255)
+#  id                  :integer         not null, primary key
+#  name                :string(255)
+#  email               :string(255)
+#  created_at          :datetime
+#  updated_at          :datetime
+#  encrypted_password  :string(255)
+#  salt                :string(255)
+#  avatar_file_name    :string(255)
+#  avatar_content_type :string(255)
+#  avatar_file_size    :integer
+#  avatar_updated_at   :datetime
 #
 
 require 'digest'
 class User < ActiveRecord::Base
   attr_accessor :password
   attr_accessible :name, :email, :password, :password_confirmation
-  
+  has_attached_file :avatar, :styles => { :thumb => ["32x32#", :png] }
+
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   validates :name, :presence => true,
@@ -53,4 +58,10 @@ class User < ActiveRecord::Base
     def secure_hash(string)
       Digest::SHA2.hexdigest(string)
     end
+
+
+
+
+
+
 end

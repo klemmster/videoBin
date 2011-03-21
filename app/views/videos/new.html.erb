@@ -1,23 +1,31 @@
-<h1>Videos#new</h1>
+<h1>Upload</h1>
 <p>Find me in app/views/videos/new.html.erb</p>
+
+
 <%= form_for @video, :html => { :multipart => true }  do |form| %>
   <%= render 'shared/error_messages' %>
     <div class="field">
-      <%= form.label 'VideoDatei:' %></br>
+      <%= form.label 'VideoDatei:' %>
       <%= form.file_field :origfile %>
     </div>
 
     <div class="field">
-      <%= form.label 'Name:' %></br>
+      <%= form.label 'Name:' %>
       <%= form.text_field :name %>
     </div>
 
     <div class="field">
-      <%= form.label 'Beschreibung:' %></br>
+      <%= form.label 'Beschreibung:' %>
       <%= form.text_field :description %>
     </div>
 
     <div class="actions">
       <%= form.submit "Upload" %>
     </div>
+
+
 <% end %>
+
+<%# form_for :user, @user, :url => user_path, :html => { :multipart => true } do |form| %>
+  <%#= form.file_field :avatar %>
+<%# end %>

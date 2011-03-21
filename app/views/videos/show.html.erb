@@ -2,12 +2,13 @@
 
 <% if @video.isDoneConverting? %>
   <script src="video.js" type="text/javascript" charset="utf-8"></script>
-  <link rel="stylesheet" href="video-js.css" type="text/css" media="screen" title="Video JS" charset="utf-8">
+  <link rel="stylesheet" href="video-js.css" type="text/css" media="screen" title="Video JS" charset="utf-8"></link>
     
     
   <script type="text/javascript" charset="utf-8">
       // Add VideoJS to all video tags on the page when the DOM is ready
       VideoJS.setupAllWhenReady();
+      
   </script>
 
   <!-- Begin VideoJS -->
@@ -15,9 +16,9 @@
       <!-- Using the Video for Everybody Embed Code http://camendesign.com/code/video_for_everybody -->
       <video class="video-js" width="640" height="264" controls preload poster="http://video-js.zencoder.com/oceans-clip.png">
         
-        <source src= <%= @video.hrefs[0] %> type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
-        <source src= <%= @video.hrefs[1] %> type='video/webm; codecs="vp8, vorbis"' /> 
-        <source src= <%= @video.hrefs[2] %> type='video/ogg; codecs="theora, vorbis"' />  
+        <source src= <%= @video.hrefs[0] %> type='video/mp4'; codecs="avc1.42E01E, mp4a.40.2"' />
+        <source src= <%= @video.hrefs[1] %> type='video/webm'; codecs="vp8, vorbis"' />
+        <source src= <%= @video.hrefs[2] %> type='video/ogg'; codecs="theora, vorbis"' />
         
         
         <!-- Flash Fallback. Use any flash video player here. Make sure to keep the vjs-flash-fallback class. -->
