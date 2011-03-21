@@ -1,6 +1,7 @@
 config/database.yml
 config/*.sphinx.conf
 config/s3_credentials.yml
+*.orig
 *~
 *.cache
 *.log

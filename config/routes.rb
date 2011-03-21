@@ -10,6 +10,7 @@ SampleApp::Application.routes.draw do
   get "pages/contact"
   get "pages/about"
   get "pages/help"
+  get "pages/videos"
   
   resources :users
   resources :videos
