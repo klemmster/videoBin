@@ -40,9 +40,9 @@ describe VideosController do
     end
 
     it "Should update Video Attributes" do
-      put :update, :id => @video, :video => @attr
+      put :update, :id => @video, :video => @attr.merge(:name =>"NoName")
       @video.reload
-      @video.name.should  == @attr[:name]
+      @video.name.should  == "NoName" 
       @video.description.should == @attr[:description]
     end
   end
