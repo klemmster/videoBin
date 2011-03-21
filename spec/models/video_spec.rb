@@ -10,11 +10,14 @@ describe Video do
   end
   
   it "should create a new instance given valid arguments" do
-    Video.create!(@attr)
+    video = Video.new(@attr)
+    video.origfile =  File.new(Rails.root + 'spec/fixtures/videos/oceans-clip.mp4')
+    video.save
   end
   
   it "should require a name" do
     no_name_video = Video.new(@attr.merge(:name => ""))
+    no_name_video.origfile = File.new(Rails.root + 'spec/fixtures/videos/oceans-clip.mp4')
     no_name_video.should_not be_valid
   end
 
