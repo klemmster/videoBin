@@ -5,7 +5,7 @@ describe Video do
     @attr = { :name => "TestVideo",
               :description => "Wirklich nur ein sinnloses Video",
               :length => 400,
-              :hrefs => ["TestVideo.ogg", "TestVideo.mp4"]
+              :href => "TestVideo"
             }
   end
   
@@ -21,11 +21,6 @@ describe Video do
   it "should require a description" do
     no_desc_video = Video.new(@attr.merge(:description => ""))
     no_desc_video.should_not be_valid
-  end
-
-  it "should have a length" do
-    no_length_video = Video.new(@attr.merge(:length => 0))
-    no_length_video.should_not be_valid
   end
 
 end

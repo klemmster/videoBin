@@ -4,7 +4,7 @@ class CreateVideos < ActiveRecord::Migration
       t.string :name
       t.text :description
       t.integer :length
-      t.string :hrefs, :default => []
+      t.string :href
 
       t.timestamps
     end

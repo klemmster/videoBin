@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(:version => 20110318152401) do
     t.string   "name"
     t.text     "description"
     t.integer  "length"
-    t.string   "hrefs"
+    t.string   "href"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "origfile_file_name"

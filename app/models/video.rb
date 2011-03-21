@@ -3,11 +3,11 @@
 #
 # Table name: videos
 #
-#  id                    :integer         primary key
+#  id                    :integer         not null, primary key
 #  name                  :string(255)
 #  description           :text
 #  length                :integer
-#  hrefs                 :string(255)
+#  href                  :string(255)
 #  created_at            :datetime
 #  updated_at            :datetime
 #  origfile_file_name    :string(255)
@@ -18,9 +18,8 @@
 #
 
 class Video < ActiveRecord::Base
-  attr_accessible :name, :description, :hrefs, :origfile
+  attr_accessible :name, :description, :href, :origfile
   attr_accessor :origfile
-  serialize :hrefs #, Array
 
   validates :name, :presence =>true
   validates :description, :presence => true
