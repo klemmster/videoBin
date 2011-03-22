@@ -25,9 +25,9 @@ class Video < ActiveRecord::Base
   validates :description, :presence => true
   validates_attachment_presence :origfile #Validation from paperclip
 
-  has_attached_file :origfile, :styles => { :small => '36x36#',
-                                            :medium => '72x72#',
-                                            :large => '115x115#'
+  has_attached_file :origfile, :styles => { :small => ['36x36#', :png],
+                                            :medium => ['72x72#', :png],
+                                            :large => ['115x115#', :png]
                                            },
                                 :processors => [:video_thumbnail ]
 
