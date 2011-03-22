@@ -16,7 +16,7 @@
 #  origfile_updated_at   :datetime
 #  doneConverting        :boolean
 #
-
+require 'lib/paperclip_processors/video_thumbnail'
 class Video < ActiveRecord::Base
   attr_accessible :name, :description, :href, :origfile
   attr_accessor :origfile
@@ -25,13 +25,12 @@ class Video < ActiveRecord::Base
   validates :description, :presence => true
   validates_attachment_presence :origfile #Validation from paperclip
 
- # has_attached_file :origfile, :styles => { :small => '36x36#',
- #                                           :medium => '72x72#',
- #                                           :large => '115x115#'
- #                                          },
- #                               :processors => [:video_thumbnail ]
+  has_attached_file :origfile, :styles => { :small => '36x36#',
+                                            :medium => '72x72#',
+                                            :large => '115x115#'
+                                           },
+                                :processors => [:video_thumbnail ]
 
- has_attached_file :origfile, :styles => { } 
   
   before_post_process :confirm_upload
   after_post_process :confirm_converting_done
