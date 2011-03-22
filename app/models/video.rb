@@ -17,6 +17,7 @@
 #  doneConverting        :boolean
 #
 require 'lib/paperclip_processors/video_thumbnail'
+require 'lib/paperclip_processors/video_converter'
 class Video < ActiveRecord::Base
   attr_accessible :name, :description, :href, :origfile
   attr_accessor :origfile
@@ -27,7 +28,9 @@ class Video < ActiveRecord::Base
 
   has_attached_file :origfile, :styles => { :small => ['36x36#', :png],
                                             :medium => ['72x72#', :png],
-                                            :large => ['115x115#', :png]
+                                            :large => ['115x115#', :png],
+                                            :x264video => { :processors => [:video_converter],
+                                                            :format => 'mp4', :whiny => true }
                                            },
                                 :processors => [:video_thumbnail ]
 
