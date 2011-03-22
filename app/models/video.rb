@@ -1,4 +1,22 @@
 # == Schema Information
+# Schema version: 20110322195225
+#
+# Table name: videos
+#
+#  id                    :integer         not null, primary key
+#  name                  :string(255)
+#  description           :text
+#  length                :integer
+#  created_at            :datetime
+#  updated_at            :datetime
+#  origfile_file_name    :string(255)
+#  origfile_content_type :string(255)
+#  origfile_file_size    :integer
+#  origfile_updated_at   :datetime
+#  doneConverting        :boolean
+#
+
+# == Schema Information
 # Schema version: 20110318152401
 #
 # Table name: videos
@@ -17,6 +35,7 @@
 #
 require 'lib/paperclip_processors/video_thumbnail'
 require 'lib/paperclip_processors/video_converter'
+
 class Video < ActiveRecord::Base
   attr_accessible :name, :description, :origfile
   attr_accessor :origfile
@@ -37,7 +56,7 @@ class Video < ActiveRecord::Base
                                            },
                                 :processors => [:video_thumbnail ]
 
-  
+  process_in_background :origfile
   before_post_process :done_uploading
   after_post_process :done_converting
 

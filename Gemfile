@@ -1,4 +1,5 @@
 source 'http://rubygems.org'
+source 'http://gemcutter.org'
 
 gem 'rails', '3.0.5'
 
@@ -7,6 +8,11 @@ gem 'rails', '3.0.5'
 
 gem 'sqlite3'
 gem 'paperclip'
+
+# Neede for background video conversion
+gem 'delayed_job'
+gem 'delayed_paperclip'
+gem 'daemons'
 
 # RVideo for Video Conversion
 #gem 'rvideo'
