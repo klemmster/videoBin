@@ -14,7 +14,7 @@
   <!-- Begin VideoJS -->
     <div class="video-js-box">
       <!-- Using the Video for Everybody Embed Code http://camendesign.com/code/video_for_everybody -->
-      <video class="video-js" width="640" height="264" controls preload poster="http://video-js.zencoder.com/oceans-clip.png">
+      <video class="video-js" width="640" height="264" controls preload poster=<%= @video.origfile.url(:large) %> >
         
         <source src= <%= @video.origfile.url(:x264video) %> type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
         <source src= <%= @video.origfile.url(:webmvideo) %> type='video/webm; codecs="vp8, vorbis"' />

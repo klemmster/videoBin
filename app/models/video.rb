@@ -46,7 +46,7 @@ class Video < ActiveRecord::Base
 
   has_attached_file :origfile, :styles => { :small => ['36x36#', :png],
                                             :medium => ['72x72#', :png],
-                                            :large => ['115x115#', :png],
+                                            :large => ['640x320#', :png],
                                             :ogvvideo => { :processors => [:video_converter],
                                                             :format => 'ogv', :whiny => true },
                                             :webmvideo => { :processors => [:video_converter],
@@ -59,12 +59,17 @@ class Video < ActiveRecord::Base
   process_in_background :origfile
   before_post_process :done_uploading
   after_post_process :done_converting
+  before_destroy :remove_attachments
 
   def isDoneConverting?
     self.doneConverting
   end
 
 
+  protected
+    def remove_attachments
+      #TODO
+    end
   private
     def done_uploading
       #flash[:success] = "Video Uploaded"
