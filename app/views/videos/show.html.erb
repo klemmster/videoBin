@@ -14,11 +14,11 @@
   <!-- Begin VideoJS -->
     <div class="video-js-box">
       <!-- Using the Video for Everybody Embed Code http://camendesign.com/code/video_for_everybody -->
-      <video class="video-js" width="640" height="264" controls preload poster="http://video-js.zencoder.com/oceans-clip.png">
+      <video class="video-js" width="640" height="264" controls preload poster=<%= @video.origfile.url(:large) %> >
         
-        <source src= <%= @video.href + ".mp4" %> type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
-        <source src= <%= @video.href + ".webm" %> type='video/webm; codecs="vp8, vorbis"' />
-        <source src= <%= @video.href + ".ogv" %> type='video/ogg; codecs="theora, vorbis"' />
+        <source src= <%= @video.origfile.url(:x264video) %> type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+        <source src= <%= @video.origfile.url(:webmvideo) %> type='video/webm; codecs="vp8, vorbis"' />
+        <source src= <%= @video.origfile.url(:ogvvideo)  %> type='video/ogg; codecs="theora, vorbis"' />
         
         
         <!-- Flash Fallback. Use any flash video player here. Make sure to keep the vjs-flash-fallback class. -->
@@ -26,7 +26,7 @@
           data="http://releases.flowplayer.org/swf/flowplayer-3.2.1.swf">
           <param name="movie" value="http://releases.flowplayer.org/swf/flowplayer-3.2.1.swf" />
           <param name="allowfullscreen" value="true" />
-          <param name="flashvars" value='config={"playlist":["http://video-js.zencoder.com/oceans-clip.png", {"url": "http://video-js.zencoder.com/oceans-clip.mp4","autoPlay":false,"autoBuffering":true}]}' />
+          <param name="flashvars" value='config={"playlist":["<%= @video.origfile.url(:large) %>", {"url": "<%= @video.origfile.url(:x264video) %>","autoPlay":false,"autoBuffering":true}]}' />
           <!-- Image Fallback. Typically the same as the poster image. -->
           <img src="http://video-js.zencoder.com/oceans-clip.png" width="640" height="264" alt="Poster Image"
             title="No video playback capabilities." />
@@ -37,6 +37,7 @@
     <!-- End VideoJS -->
     <% else %>
     <p>Video is still converting</p>
+    <%= image_tag @video.origfile.url(:large) %>
     <% end %>
     
 
