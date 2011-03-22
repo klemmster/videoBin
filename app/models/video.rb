@@ -29,6 +29,10 @@ class Video < ActiveRecord::Base
   has_attached_file :origfile, :styles => { :small => ['36x36#', :png],
                                             :medium => ['72x72#', :png],
                                             :large => ['115x115#', :png],
+                                            :ogvvideo => { :processors => [:video_converter],
+                                                            :format => 'ogv', :whiny => true },
+                                            :webmvideo => { :processors => [:video_converter],
+                                                            :format => 'webm', :whiny => true },
                                             :x264video => { :processors => [:video_converter],
                                                             :format => 'mp4', :whiny => true }
                                            },
