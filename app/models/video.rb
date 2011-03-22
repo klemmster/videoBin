@@ -40,7 +40,6 @@ class Video < ActiveRecord::Base
   
   before_post_process :done_uploading
   after_post_process :done_converting
-  after_create :generateVideoBaseUrl
 
   def isDoneConverting?
     self.doneConverting
