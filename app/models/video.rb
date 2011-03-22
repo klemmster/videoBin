@@ -29,10 +29,12 @@ class Video < ActiveRecord::Base
   
   before_post_process :confirm_upload
   after_post_process :confirm_converting_done
+  after_create :generateVideoBaseUrl
 
   def isDoneConverting?
     self.doneConverting
   end
+
 
   private
     def confirm_upload
@@ -43,7 +45,9 @@ class Video < ActiveRecord::Base
       #self.doneConverting = true
       #TODO: Possibly inform user
     end
-#
-
+  def generateVideoBaseUrl
+    self.href = Rails.public_path + '/system/origfiles/' + self.id.to_s 
+    #TODO: Fix URL to Converted
+  end
     
 end
