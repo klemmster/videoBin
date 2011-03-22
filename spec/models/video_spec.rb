@@ -5,7 +5,6 @@ describe Video do
     @attr = { :name => "TestVideo",
               :description => "Wirklich nur ein sinnloses Video",
               :length => 400,
-              :href => "TestVideo"
             }
   end
   

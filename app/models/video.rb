@@ -7,7 +7,6 @@
 #  name                  :string(255)
 #  description           :text
 #  length                :integer
-#  href                  :string(255)
 #  created_at            :datetime
 #  updated_at            :datetime
 #  origfile_file_name    :string(255)
@@ -19,7 +18,7 @@
 require 'lib/paperclip_processors/video_thumbnail'
 require 'lib/paperclip_processors/video_converter'
 class Video < ActiveRecord::Base
-  attr_accessible :name, :description, :href, :origfile
+  attr_accessible :name, :description, :origfile
   attr_accessor :origfile
 
   validates :name, :presence =>true
@@ -39,8 +38,8 @@ class Video < ActiveRecord::Base
                                 :processors => [:video_thumbnail ]
 
   
-  before_post_process :confirm_upload
-  after_post_process :confirm_converting_done
+  before_post_process :done_uploading
+  after_post_process :done_converting
   after_create :generateVideoBaseUrl
 
   def isDoneConverting?
@@ -49,17 +48,13 @@ class Video < ActiveRecord::Base
 
 
   private
-    def confirm_upload
-      #TODO: Inform user about successful upload, conversion started
+    def done_uploading
+      #flash[:success] = "Video Uploaded"
     end
 
-    def confirm_converting_done
-      #self.doneConverting = true
-      #TODO: Possibly inform user
+    def done_converting
+      self.doneConverting = true
+      #flash[:success] = " Done converting Video"
+
     end
-  def generateVideoBaseUrl
-    self.href = Rails.public_path + '/system/origfiles/' + self.id.to_s 
-    #TODO: Fix URL to Converted
-  end
-    
 end
