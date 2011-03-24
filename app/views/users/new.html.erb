@@ -2,36 +2,57 @@
 <p>Find me in app/views/users/new.html.erb</p>
 
 
-<%= form_for @user, :html => { :multipart => true }  do |form| %>
+<%#= form_for @user, :html => { :multipart => true }  do |form| %>
   
-  <%= form.file_field :avatar %>
+  <%#= form.file_field :avatar %>
 
-    <div class="actions">
-      <%= form.submit "Upload" %>
-    </div>
+    <%#*<div class="actions">%>
+      <%#= form.submit "Upload" %>
+    <%#*</div>%>
 
-    <div class="field">
-    <%= form.label :name %><br />
-    <%= form.text_field :name %>
-  </div>
+    <%#*<div class="field">%>
+    <%#= form.label :name %><br />
+    <%#= form.text_field :name %>
+  <%#*</div>%>
 
+  <%#*<div class="field">%>
+    <%#= form.label :email %><br />
+    <%#= form.text_field :email %>
+  <%#*</div>%>
+  <%#*<div class="field">%>
+    <%#= form.label :password %><br />
+    <%#= form.password_field :password %>
+  <%#*</div>%>
+  <%#*<div class="field">%>
+    <%#= form.label :password_confirmation, "Confirmation" %><br />
+    <%#= form.password_field :password_confirmation %>
+  <%#*</div>%>
+  <%#*<div class="actions">%>
+    <%#= form.submit "Sign up" %>
+  <%#*</div>%>
+
+
+<%= form_for(@user) do |f| %>
+    <%= render 'shared/error_messages2' %>
   <div class="field">
-    <%= form.label :email %><br />
-    <%= form.text_field :email %>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= form.label :password %><br />
-    <%= form.password_field :password %>
+    <%= f.label :email %><br />
+    <%= f.text_field :email %>
   </div>
   <div class="field">
-    <%= form.label :password_confirmation, "Confirmation" %><br />
-    <%= form.password_field :password_confirmation %>
+    <%= f.label :password %><br />
+    <%= f.password_field :password %>
+  </div>
+  <div class="field">
+    <%= f.label :password_confirmation, "Confirmation" %><br />
+    <%= f.password_field :password_confirmation %>
   </div>
   <div class="actions">
-    <%= form.submit "Sign up" %>
+    <%= f.submit "Sign up" %>
   </div>
-
-
 
 
 
