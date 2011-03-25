@@ -82,11 +82,15 @@ describe "LayoutLinks" do
     describe "failure" do
 
       it "should not have a sign in link" do
-
+        visit root_path
+        response.should_not have_selector("a", :href => signin_path,
+                                               :content => "Sign In")
       end
       
       it "should not have a sign up link" do
-
+        visit root_path
+        response.should_not have_selector("a", :href => signup_path,
+                                               :content => "Sign Up")
       end
     end
   end
