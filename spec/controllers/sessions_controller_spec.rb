@@ -3,7 +3,6 @@ require 'spec_helper'
 describe SessionsController do
   render_views
 
-
   describe "GET 'new'" do
     it "should be successful" do
       get 'new'
@@ -31,12 +30,6 @@ describe SessionsController do
       end
     end
 ######################################################################
-
-
-
-
-
-
 
     describe "POST 'create'" do
 
@@ -94,8 +87,6 @@ describe "POST 'create'" do
         response.should redirect_to(user_path(@user))
       end
     end
+  end
 end
-end
-
-
 

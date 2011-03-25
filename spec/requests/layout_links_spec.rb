@@ -34,6 +34,12 @@ describe "LayoutLinks" do
       response.should have_selector("a", :href => signin_path,
                                          :content => "Sign In")
     end
+
+    it "should not have a sign out link" do
+      visit root_path
+      response.should_not have_selector("a", :href => signout_path,
+                                             :content => "Sign out")
+    end
   end
 
   describe "when signed in" do
