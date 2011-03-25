@@ -78,9 +78,9 @@ describe UsersController do
         response.should render_template('new')
       end
 
-       it "should sign the user in" do
-        post :create, :user => @attr.merge(:email => "aaa@bbb.ccc", :password => "test111" )
-        controller.should be_signed_in
+       it "should not sign the user in" do
+        post :create, :user => @attr
+        controller.should_not be_signed_in
       end
     end
   end
