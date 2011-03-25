@@ -41,8 +41,6 @@ describe UsersController do
 
   describe "authenticate method" do
 
-    
-
       it "should return nil on email/password mismatch" do
         wrong_password_user = User.authenticate(@attr[:email], "wrongpass")
         wrong_password_user.should be_nil
@@ -54,7 +52,7 @@ describe UsersController do
       end
 
       it "should return the user on email/password match" do
-        matching_user = User.authenticate(@attr[:email], @attr[:password])
+        matching_user = User.authenticate(@user.email, @user.password)
         matching_user.should == @user
       end
     end
@@ -81,7 +79,7 @@ describe UsersController do
       end
 
        it "should sign the user in" do
-        post :create, :user => @attr
+        post :create, :user => @attr.merge(:email => "aaa@bbb.ccc", :password => "test111" )
         controller.should be_signed_in
       end
     end
