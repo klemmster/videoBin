@@ -1,4 +1,3 @@
-
 require 'spec_helper'
 
 describe "LayoutLinks" do
@@ -33,7 +32,7 @@ describe "LayoutLinks" do
     it "should have a signin link" do
       visit root_path
       response.should have_selector("a", :href => signin_path,
-                                         :content => "Sign in")
+                                         :content => "Sign In")
     end
   end
 
@@ -68,5 +67,4 @@ describe "LayoutLinks" do
 
   end
 end
-
 
