@@ -37,5 +37,13 @@ describe "Users" do
       end
     end
   end
+
+  describe "list" do
+
+    it "should list users"
+
+    it "should have a link to users"
+
+  end
 end
 
