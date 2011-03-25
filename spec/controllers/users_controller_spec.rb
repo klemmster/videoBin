@@ -3,8 +3,6 @@ require 'spec_helper'
 describe UsersController do
   render_views
 
-
-
   describe "GET 'new'" do
     it "should be successful" do
       get 'new'
@@ -34,9 +32,6 @@ describe UsersController do
     end
   end
 
-
-
-
   describe "authenticate method" do
 
       it "should return nil on email/password mismatch" do
@@ -56,16 +51,12 @@ describe UsersController do
     end
 
 
-
-
-
-
-
   describe "POST 'create'" do
 
     describe "failure" do
 
       before(:each) do
+        @user = Factory(:user)
         @attr = { :name => "", :email => "", :password => "",
                   :password_confirmation => "" }
       end
@@ -90,13 +81,18 @@ describe UsersController do
         post :create, :user => @attr
         controller.should be_signed_in
       end
-
-
     end
   end
 
 
   describe "GET 'show'" do
+  
+    before(:each) do
+      @user = Factory(:user)
+      @attr = { :name => "", :email => "", :password => "",
+                        :password_confirmation => "" }
+   end
+
     
     it "should have the right title" do
       get :show, :id => @user
@@ -113,9 +109,4 @@ describe UsersController do
       response.should have_selector("h1>img", :class => "gravatar")
     end
   end
-
-
-
-
-
 end
