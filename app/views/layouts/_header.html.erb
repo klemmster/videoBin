@@ -4,9 +4,12 @@
     <ul>
       <li><%= link_to "Home", root_path %> </li>
       <li><%= link_to "Videos", videos_path  %></li>
-      <li><%= link_to "Sign In", signin_path %></li>
-      <li><%= link_to "Sign Up", signup_path %></li>
-      <li><%= link_to "Sign out", signout_path, :method => :delete %></li>
+      <% if not signed_in? %>
+        <li><%= link_to "Sign In", signin_path %></li>
+        <li><%= link_to "Sign Up", signup_path %></li>
+      <% elsif signed_in? %>
+        <li><%= link_to "Sign out", signout_path, :method => :delete %></li>
+      <% end %>
       <li><%=  link_to "UserList", users_path%></li>
 
         <% if signed_in? %>
@@ -20,3 +23,4 @@
     </ul>
   </nav>
 </header>
+
