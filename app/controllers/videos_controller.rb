@@ -19,6 +19,7 @@ class VideosController < ApplicationController
 
   def show
     @video =Video.find(params[:id])
+    @embed = render_to_string 'embedVideo', :layout => false
   end
 
   def delete
