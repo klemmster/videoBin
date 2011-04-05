@@ -1,7 +1,6 @@
 <% if video.isDoneConverting? %>
-  <script src="video.js" type="text/javascript" charset="utf-8"></script>
-  <link rel="stylesheet" href="video-js.css" type="text/css" media="screen" title="Video JS" charset="utf-8"></link>
-
+<%= javascript_include_tag "video-js/video" %>
+<%= stylesheet_link_tag "video-js" %>
 
   <script type="text/javascript" charset="utf-8">
       // Add VideoJS to all video tags on the page when the DOM is ready
@@ -25,7 +24,7 @@
           <param name="allowfullscreen" value="true" />
           <param name="flashvars" value='config={"playlist":["<%= video.origfile.url(:large) %>", {"url": "<%= @video.origfile.url(:x264video) %>","autoPlay":false,"autoBuffering":true}]}' />
           <!-- Image Fallback. Typically the same as the poster image. -->
-          <img src="http://video-js.zencoder.com/oceans-clip.png" width="640" height="264" alt="Poster Image"
+          <img src= "<%= video.origfile.url(:large) %>" width="640" height="264" alt="Poster Image"
             title="No video playback capabilities." />
         </object>
       </video>
