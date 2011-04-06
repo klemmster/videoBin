@@ -60,6 +60,19 @@ describe UsersController do
 
   describe "POST 'create'" do
 
+    describe "success" do
+    
+      it "should create a user" do
+        lambda do
+          post :create, :user => @attr.merge!(:email => "test@bla.com",
+                                              :name => "Gilbert",
+                                              :password => "123456er",
+                                              :password_confirmation => "123456er")
+        end.should change(User, :count).by(1)
+      end
+
+    end
+
     describe "failure" do
 
       it "should not create a user" do

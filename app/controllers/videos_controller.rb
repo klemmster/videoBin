@@ -1,12 +1,12 @@
 class VideosController < ApplicationController
-  before_filter :authenticate, :only => [:new, :create, :destroy]
+  before_filter :authenticate, :only => [:new, :create, :destroy, :edit, :update]
 
   def index
     @videos = Video.all
   end
 
   def create
-    @video = Video.new(params[:video])
+    @video = current_user.videos.new(params[:video])
     @video.length = 400
     if @video.save
       redirect_to videos_url

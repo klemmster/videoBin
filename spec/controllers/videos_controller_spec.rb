@@ -6,12 +6,13 @@ describe VideosController do
   before(:each) do
           @attr = {:name => "TestName",
                    :description => "TestDescription",
-                   :user_id => 1
+                   :user_id => 1,
+                   :origfile =>  File.new(Rails.root + 'spec/fixtures/videos/oceans-clip.mp4')
                    }
           @user = Factory(:user)
-          @video = @user.videos.new(@attr)
-          @video.origfile = File.new(Rails.root + 'spec/fixtures/videos/oceans-clip.mp4') 
-          @video.save
+          @video = @user.videos.create(@attr)
+          #@video.origfile = File.new(Rails.root + 'spec/fixtures/videos/oceans-clip.mp4') 
+          #@video.save
   end
 
   describe "GET 'new'" do
@@ -24,6 +25,32 @@ describe VideosController do
       test_sign_in(@user)
       get :new
       response.should be_success
+    end
+
+  end
+
+  describe "Post" do
+    describe "Create" do
+      describe "Signed In" do
+
+        it "should not create a new video" do
+          lambda do
+            post :create, :video => @video
+          end.should_not change(Video, :count).by(1)
+        end
+          
+        it "should create a new video" do
+          lambda do
+            test_sign_in(@user)
+            post :create, :video => @attr
+          end.should change(Video, :count).by(1)
+        end
+
+      end
+      describe "Logged Out" do
+
+
+      end
     end
   end
 
@@ -51,13 +78,25 @@ describe VideosController do
     end
   end
 
-  describe "GET 'update'" do
+  describe "GET 'edit'" do
+    it "Edit Page should redirect to sign_in if logged out" do
+      get :edit, :id => @video
+      response.should redirect_to(signin_path)
+    end
+
     it "Edit Page should open" do
+      test_sign_in(@user)
       get :edit, :id => @video
       response.should be_success
     end
 
+    it "should refuse update if logged out" do
+      put :update, :id => @video, :video => @attr.merge(:name =>"NoName")
+      response.should redirect_to(signin_path)
+    end
+
     it "Should update Video Attributes" do
+      test_sign_in(@user)
       put :update, :id => @video, :video => @attr.merge(:name =>"NoName")
       @video.reload
       @video.name.should  == "NoName" 
