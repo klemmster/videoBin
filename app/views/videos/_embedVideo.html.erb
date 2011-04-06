@@ -1,0 +1,24 @@
+  <script src="<%= root_url%>javascripts/video-js/video.js" type="text/javascript" charset="utf-8"></script>
+  <link rel="stylesheet" href="<%= root_url%>stylesheets/video-js.css" type="text/css" media="screen" title="Video JS" charset="utf-8"></link>
+
+  <script type="text/javascript" charset="utf-8">
+      VideoJS.setupAllWhenReady();
+  </script>
+
+    <div class="video-js-box">
+      <video class="video-js" width="640" height="264" controls preload poster=<%= root_url + video.origfile.url(:large) %> >
+
+        <source src= <%= root_url + video.origfile.url(:x264video) %> type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' />
+        <source src= <%= root_url + video.origfile.url(:webmvideo) %> type='video/webm; codecs="vp8, vorbis"' />
+        <source src= <%= root_url + video.origfile.url(:ogvvideo)  %> type='video/ogg; codecs="theora, vorbis"' />
+
+        <object class="vjs-flash-fallback" width="640" height="264" type="application/x-shockwave-flash"
+          data="http://releases.flowplayer.org/swf/flowplayer-3.2.1.swf">
+          <param name="movie" value="http://releases.flowplayer.org/swf/flowplayer-3.2.1.swf" />
+          <param name="allowfullscreen" value="true" />
+          <param name="flashvars" value='config={"playlist":["<%= root_url + video.origfile.url(:large) %>", {"url": "<%= root_url + video.origfile.url(:x264video) %>","autoPlay":false,"autoBuffering":true}]}' />
+          <img src= "<%= root_url + video.origfile.url(:large) %>" width="640" height="264" alt="Poster Image"
+            title="No video playback capabilities." />
+        </object>
+      </video>
+    </div>
