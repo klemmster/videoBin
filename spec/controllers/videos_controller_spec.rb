@@ -48,8 +48,12 @@ describe VideosController do
 
       end
       describe "Logged Out" do
-
-
+        it "should not create a new video" do
+          lambda do
+            post :create, :video => @attr
+          end.should_not change(Video, :count).by(1)
+          response.should redirect_to(signin_path)
+        end
       end
     end
   end
