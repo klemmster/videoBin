@@ -107,5 +107,55 @@ describe VideosController do
       @video.description.should == @attr[:description]
     end
   end
+  
+  describe "Get Index" do
+    describe "as SignedIn user" do
 
+      describe "Success" do
+
+        it "should link to a video" do
+          test_sign_in(@user)
+          get :index
+          response.should have_selector("a", :href => video_path(@video))
+        end
+
+        it "should link to edit a video" do
+          test_sign_in(@user)
+          get :index
+          response.should have_selector("a", :href => edit_video_path(@video))
+        end
+
+        it "should link to delete a video" do
+          test_sign_in(@user)
+          get :index
+          response.should have_selector("a", :href => video_path(@video), :'data-method' => 'delete')
+        end
+      end
+
+      describe "Failure" do
+      end
+    end
+    
+    describe "as loggedOut user" do
+      describe "success" do
+
+        it "should link to a video" do
+          get :index
+          response.should have_selector("a", :href => video_path(@video))
+        end
+      end
+
+      describe "failure" do
+        it "should not show an edit link" do
+          get :index
+          response.should_not have_selector("a", :href => edit_video_path(@video))
+        end
+        it "should not show a delete link" do
+          get :index
+          response.should_not have_selector("a", :href => video_path(@video), :'data-method' => 'delete')
+        end
+      end
+    end
+
+  end
 end
