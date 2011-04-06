@@ -1,3 +1,5 @@
 <h1><%= @video.name %></h1>
 <%= render 'showVideo', :video => @video %>
+<% if not @video.still_processing? %>
 <div><code><%= @embed %></code></div>
+<% end %>
