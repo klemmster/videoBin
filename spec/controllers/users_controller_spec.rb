@@ -23,7 +23,7 @@ describe UsersController do
 
   it "should have the right title" do
     get 'index'
-    response.should have_selector("title", :content => "Tutorial, the User overview Page")
+    response.should have_selector("title", :content => "Tutorial, the UserList Page")
   end
 
     describe "GET 'new'" do
