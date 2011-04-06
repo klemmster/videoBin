@@ -36,8 +36,16 @@ describe VideosController do
   end
 
   describe "GET 'delete'" do
+    it "should deny access if not logged in" do
+      delete :destroy, :id => @video
+      response.should redirect_to(signin_path)
+    end
+
+    it "should refuse deletion if not users video"
+
     it "should delete a video" do
       lambda do
+        test_sign_in(@user)
         delete :destroy, :id => @video
       end.should change(Video, :count).by(-1)
     end
