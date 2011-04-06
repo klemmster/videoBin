@@ -3,7 +3,6 @@ require 'spec_helper'
 describe UsersController do
   render_views
 
-
   before(:each) do
     @user = Factory(:user)
     @attr = { :name => "", :email => "", :password => "", 
@@ -103,13 +102,8 @@ describe UsersController do
       response.should have_selector("h1>img", :class => "gravatar")
     end
   end
-end
 
-describe "DELETE 'destroy'" do
-
-    before(:each) do
-      @user = Factory(:user)
-    end
+  describe "DELETE 'destroy'" do
 
     describe "as a non-signed-in user" do
       it "should deny access" do
@@ -145,3 +139,4 @@ describe "DELETE 'destroy'" do
       end
     end
   end
+end
