@@ -1,4 +1,4 @@
-<% if video.isDoneConverting? %>
+<% if not video.still_processing? %>
 <%= javascript_include_tag "video-js/video" %>
 <%= stylesheet_link_tag "video-js" %>
 

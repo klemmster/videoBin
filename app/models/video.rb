@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20110406150351
+# Schema version: 20110406175330
 #
 # Table name: videos
 #
@@ -13,8 +13,8 @@
 #  origfile_content_type :string(255)
 #  origfile_file_size    :integer
 #  origfile_updated_at   :datetime
-#  doneConverting        :boolean
 #  user_id               :integer
+#  origfile_processing   :boolean
 #
 
 require 'lib/paperclip_processors/video_thumbnail'
@@ -43,27 +43,14 @@ class Video < ActiveRecord::Base
                                 :processors => [:video_thumbnail ]
 
   process_in_background :origfile
-  before_post_process :done_uploading
-  after_post_process :done_converting
   before_destroy :remove_attachments
 
-  def isDoneConverting?
-    self.doneConverting
+  def still_processing?
+    self.origfile_processing
   end
-
 
   protected
     def remove_attachments
-      #TODO
-    end
-  private
-    def done_uploading
-      #flash[:success] = "Video Uploaded"
-    end
-
-    def done_converting
-      self.doneConverting = true
-      #flash[:success] = " Done converting Video"
-
+      destroy_attached_files
     end
 end
