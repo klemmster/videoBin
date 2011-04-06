@@ -1,4 +1,6 @@
 class VideosController < ApplicationController
+  before_filter :authenticate, :only => [:new, :create, :destroy]
+
   def index
     @videos = Video.all
   end

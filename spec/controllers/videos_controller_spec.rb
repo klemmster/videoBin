@@ -15,8 +15,14 @@ describe VideosController do
   end
 
   describe "GET 'new'" do
-    it "should open new video page" do
+    it "should not open when not signed in" do
       get 'new'
+      response.should redirect_to(signin_path)
+    end
+
+    it "should open when signed in" do
+      test_sign_in(@user)
+      get :new
       response.should be_success
     end
   end
