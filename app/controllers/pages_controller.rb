@@ -18,4 +18,6 @@ class PagesController < ApplicationController
   def video
     @title = "Video"
   end
+
+
 end

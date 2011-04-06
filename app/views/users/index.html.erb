@@ -1,6 +1,16 @@
 <h1>List Users</h1>
 <% @users.each do |user| %>
+
+
+
+<br></br>
   <tr>
-    <td><%=user.name %>
+    <td><%= link_to user.name, user %></td>
   </tr>
+
+
+
 <% end %>
+
+
+  

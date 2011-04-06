@@ -16,23 +16,6 @@
 #  doneConverting        :boolean
 #
 
-# == Schema Information
-# Schema version: 20110318152401
-#
-# Table name: videos
-#
-#  id                    :integer         not null, primary key
-#  name                  :string(255)
-#  description           :text
-#  length                :integer
-#  created_at            :datetime
-#  updated_at            :datetime
-#  origfile_file_name    :string(255)
-#  origfile_content_type :string(255)
-#  origfile_file_size    :integer
-#  origfile_updated_at   :datetime
-#  doneConverting        :boolean
-#
 require 'lib/paperclip_processors/video_thumbnail'
 require 'lib/paperclip_processors/video_converter'
 
