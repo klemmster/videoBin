@@ -4,14 +4,18 @@ describe VideosController do
   render_views
 
   before(:each) do
-          @attr = {:name => "TestName", :description => "TestDescription" }
-          @video = Video.new(@attr)
+          @attr = {:name => "TestName",
+                   :description => "TestDescription",
+                   :user_id => 1
+                   }
+          @user = Factory(:user)
+          @video = @user.videos.new(@attr)
           @video.origfile = File.new(Rails.root + 'spec/fixtures/videos/oceans-clip.mp4') 
           @video.save
   end
 
   describe "GET 'new'" do
-    it "should ope new video page" do
+    it "should open new video page" do
       get 'new'
       response.should be_success
     end
