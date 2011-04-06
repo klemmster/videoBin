@@ -11,8 +11,6 @@ describe VideosController do
                    }
           @user = Factory(:user)
           @video = @user.videos.create(@attr)
-          #@video.origfile = File.new(Rails.root + 'spec/fixtures/videos/oceans-clip.mp4') 
-          #@video.save
   end
 
   describe "GET 'new'" do

@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20110321005739
+# Schema version: 20110404071106
 #
 # Table name: users
 #
@@ -14,6 +14,7 @@
 #  avatar_content_type :string(255)
 #  avatar_file_size    :integer
 #  avatar_updated_at   :datetime
+#  admin               :boolean
 #
 
 require 'digest'
@@ -37,6 +38,10 @@ class User < ActiveRecord::Base
                        :confirmation => true,
                        :length => { :within => 6..40 }
   before_save :encrypt_password
+
+  def admin?
+    self.admin
+  end
 
   def has_password?(submitted_password)
     encrypted_password == encrypt(submitted_password)
