@@ -28,7 +28,7 @@
           <param name="allowfullscreen" value="true" />
           <param name="flashvars" value='config={"playlist":["<%= @video.origfile.url(:large) %>", {"url": "<%= @video.origfile.url(:x264video) %>","autoPlay":false,"autoBuffering":true}]}' />
           <!-- Image Fallback. Typically the same as the poster image. -->
-          <img src="http://video-js.zencoder.com/oceans-clip.png" width="640" height="264" alt="Poster Image"
+          <img src="<%= @video.origfile.url(:large) %>" width="640" height="264" alt="Poster Image"
             title="No video playback capabilities." />
         </object>
       </video>
