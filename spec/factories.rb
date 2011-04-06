@@ -5,3 +5,9 @@ Factory.define :user do |user|
   user.password              "foobar"
   user.password_confirmation "foobar"
 end
+
+Factory.define :video do |video|
+  video.name  "Video Name"
+  video.description "Video Description"
+  video.origfile_file_name "Fake Attachment name"
+end

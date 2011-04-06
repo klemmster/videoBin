@@ -17,11 +17,20 @@ describe "Users" do
   describe "Test Video association" do
     before(:each) do
       @user = User.create(@attr)
+      @video1 = Factory(:video, :user => @user)
+      @video2 = Factory(:video, :user => @user)
     end
+
     it "should have a videos association" do
       @user.should respond_to(:videos)
     end
 
+    it "should delete associate videos on user delete" do
+      @user.destroy
+      [@video1, @video2].each do |video|
+        Video.find_by_id(video.id).should be_nil
+      end
+    end
   end
 
   it "should require a name" do
