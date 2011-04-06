@@ -40,9 +40,22 @@ describe "Users" do
 
   describe "list" do
 
-    it "should list users"
+    before(:each) do
+     @user = Factory(:user)
+    end
 
-    it "should have a link to users"
+    it "should list users" do
+      visit users_path
+      response.should have_selector("ul", :class => "users")
+    end
+
+    it "should have a link to users" do
+      visit users_path
+      response.should have_selector("li") do |li|
+        li.should have_selector("img")
+        li.should have_selector("a")
+      end
+    end
 
   end
 end
