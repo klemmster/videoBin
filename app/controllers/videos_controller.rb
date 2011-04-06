@@ -20,6 +20,7 @@ class VideosController < ApplicationController
   def show
     @video =Video.find(params[:id])
     @embed = render_to_string 'embedVideo', :layout => false
+    @embed.gsub!("/system", "system") #Get rid of double slashes in link
     @embed = CGI.escapeHTML(@embed)
   end
 
