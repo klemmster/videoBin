@@ -13,6 +13,16 @@ describe "Users" do
   it "should create a new instance given a valid attribute" do
     User.create!(@attr)
   end
+  
+  describe "Test Video association" do
+    before(:each) do
+      @user = User.create(@attr)
+    end
+    it "should have a videos association" do
+      @user.should respond_to(:videos)
+    end
+
+  end
 
   it "should require a name" do
     no_name_user = User.new(@attr.merge(:name => ""))

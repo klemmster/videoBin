@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110322195225) do
+ActiveRecord::Schema.define(:version => 20110406150351) do
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(:version => 20110322195225) do
     t.integer  "origfile_file_size"
     t.datetime "origfile_updated_at"
     t.boolean  "doneConverting"
+    t.integer  "user_id"
   end
 
 end

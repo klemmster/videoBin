@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20110322195225
+# Schema version: 20110406150351
 #
 # Table name: videos
 #
@@ -14,6 +14,7 @@
 #  origfile_file_size    :integer
 #  origfile_updated_at   :datetime
 #  doneConverting        :boolean
+#  user_id               :integer
 #
 
 require 'lib/paperclip_processors/video_thumbnail'
@@ -22,6 +23,7 @@ require 'lib/paperclip_processors/video_converter'
 class Video < ActiveRecord::Base
   attr_accessible :name, :description, :origfile
   attr_accessor :origfile
+  belongs_to :user
 
   validates :name, :presence =>true
   validates :description, :presence => true

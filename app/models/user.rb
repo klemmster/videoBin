@@ -22,6 +22,8 @@ class User < ActiveRecord::Base
   attr_accessible :name, :email, :password, :password_confirmation, :avatar
   has_attached_file :avatar, :styles => { :thumb => ["32x32#", :png] }
 
+  has_many :videos
+
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
   validates :name, :presence => true,
