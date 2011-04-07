@@ -10,7 +10,7 @@
   <% @user = User.find_by_id(video.user_id) %>
   <tr>
     <td><%= link_to video.name, video %></td>
-    <td><%= video.description %></td>
+    <td><%= video.description[0, 10] + "..." %></td>
     <td><%= link_to @user.name, @user%></td>
   </tr>
 <% end %>

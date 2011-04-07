@@ -5,18 +5,12 @@
 <% end %>
 <%= render 'showVideo', :video => @video %>
 <% if not @video.still_processing? %>
-<div></div>
+  <p><a href="#content" title="Content Lightbox">EmbedCode</a> </p>
 
-<% end %>
-
-
-
-
-<p><a href="#content" title="Content Lightbox">EmbedCode</a> </p>
-
-<div class="lightbox" id="content">
-  <div class="w60p h400 scroll">
-    <p><%= @embed %></p>
+  <div class="lightbox" id="content">
+    <div class="w60p h400 scroll">
+      <p><%= @embed %></p>
+    </div>
+    <p class="close"><a href="#" title="Close This Content Lightbox">Close <span>X</span></a></p>
   </div>
-  <p class="close"><a href="#" title="Close This Content Lightbox">Close <span>X</span></a></p>
-</div>
+<% end %>
