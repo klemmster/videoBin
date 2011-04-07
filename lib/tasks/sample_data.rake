@@ -23,7 +23,7 @@ def make_users
                  :password => password,
                  :password_confirmation => password)
     user.videos.create!(:name => Faker::Company.bs,
-                        :description => Faker::Lorem.sentence,
+                        :description => Faker::Lorem.paragraph,
                         :origfile => File.new(Rails.root + 'spec/fixtures/videos/oceans-clip.mp4'))
   end
 end

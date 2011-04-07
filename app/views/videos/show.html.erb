@@ -4,6 +4,7 @@
   <%= link_to 'Edit', edit_video_path(@video) unless not current_user.admin? %>
 <% end %>
 <%= render 'showVideo', :video => @video %>
+<p class = "round" ><%= @video.description %></p>
 <% if not @video.still_processing? %>
   <p><a href="#content" title="Content Lightbox">EmbedCode</a> </p>
 
