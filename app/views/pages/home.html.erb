@@ -3,5 +3,8 @@
 <p>
   Welcome to VideoBin. Here you can Upload your Videos and share them with other Members.
 </p>
-
+<% if not signed_in? %>
 <%= link_to "Sign up now!", signup_path, :class => "signup_button round" %>
+<% end %>
+
+
