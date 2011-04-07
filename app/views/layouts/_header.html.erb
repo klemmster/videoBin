@@ -13,6 +13,7 @@
       <% if signed_in? %>
         <li><%= link_to "Profile", current_user %></li>
         <li><%= link_to "UserList", users_path%></li>
+        <li><%= link_to "Upload", upload_path %></li>
       <% end %>
       <li><%= link_to "Help", help_path %> </li>
     </ul>
