@@ -3,9 +3,9 @@ module ApplicationHelper
 
   def title
     if @title.nil?
-      "Tutorial, an unknown Page"
+      "VideoBin"
     else
-       "Tutorial, the #{@title} Page"
+       "VideoBin, the #{@title} Page"
     end
   end
 
