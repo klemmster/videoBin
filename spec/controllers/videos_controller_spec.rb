@@ -117,20 +117,21 @@ describe VideosController do
           response.should have_selector("a", :href => video_path(@video))
         end
 
-        it "should link to edit a video" do
-          test_sign_in(@user)
-          get :index
-          response.should have_selector("a", :href => edit_video_path(@video))
-        end
-
-        it "should link to delete a video" do
-          test_sign_in(@user)
-          get :index
-          response.should have_selector("a", :href => video_path(@video), :'data-method' => 'delete')
-        end
       end
 
       describe "Failure" do
+
+        it "should not link to edit video" do
+          test_sign_in(@user)
+          get :index
+          response.should_not have_selector("a", :href => edit_video_path(@video))
+        end
+
+        it "should_not link to delete a video" do
+          test_sign_in(@user)
+          get :index
+          response.should_not have_selector("a", :href => video_path(@video), :'data-method' => 'delete')
+        end
       end
     end
     
