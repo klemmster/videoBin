@@ -2,20 +2,16 @@
   <%= link_to image_tag("stream.png", :alt => "VideoBin", :class => "round"), root_path %>
   <nav class="round">
     <ul>
-        <li><%= link_to "Home", root_path %> </li>
+        <li><%= link_to "Upload", upload_path %></li>
         <li><%= link_to "Videos", videos_path  %></li>
       <% if not signed_in? %>
         <li><%= link_to "Sign In", signin_path %></li>
         <li><%= link_to "Sign Up", signup_path %></li>
       <% elsif signed_in? %>
+        <li><%= link_to "UserList", users_path%></li>
+        <li><%= link_to "Profile", current_user %></li>
         <li><%= link_to "Sign out", signout_path, :method => :delete %></li>
       <% end %>
-      <% if signed_in? %>
-        <li><%= link_to "Profile", current_user %></li>
-        <li><%= link_to "UserList", users_path%></li>
-        <li><%= link_to "Upload", upload_path %></li>
-      <% end %>
-      <li><%= link_to "Help", help_path %> </li>
     </ul>
   </nav>
 </header>
