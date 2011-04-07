@@ -16,7 +16,7 @@ module Paperclip
 
       #TODO: use -vpre slow for production?
       @mp4Options = " -y -acodec libfaac -ab 128k -f mp4 -vcodec libx264 -vpre fast -crf 22 -threads 2 -s 640x360 "
-      @ogvOptions = " -v 8 --aspect 16:9 --max_size 640x320 --croptop --cropbottom --cropleft --cropright "
+      @ogvOptions = " -v 8 --aspect 16:9 --max_size 640x320 --croptop --cropbottom --cropleft --cropright -o "
       @webmOptions = " -y -threads 3 -f webm -vcodec libvpx -deinterlace -g 120 -level 216 -profile 0 -qmax 42 -qmin 10 -rc_buf_aggressivity 0.95 -vb 2M -acodec libvorbis -aq 90 -ac 2 -s 640x360 "
       if @format == 'mp4'
         @options = @mp4Options
