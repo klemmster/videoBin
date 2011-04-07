@@ -3,17 +3,12 @@
   <tr>
     <th>Name</th>
     <th>Beschreibung</th>
-    <th></th>
-    <th></th>
   </tr>
 
 <% @videos.each do |video| %>
   <tr>
     <td><%= link_to video.name, video %></td>
     <td><%= video.description %></td>
-    <td><%= link_to 'Edit', edit_video_path(video) unless not signed_in? %></td>
-    <td><%= link_to 'Destroy', video, :confirm => 'Are you sure?',
-:method => :delete unless not signed_in? %></td>
   </tr>
 <% end %>
 </table>
