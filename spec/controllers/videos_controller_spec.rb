@@ -79,18 +79,34 @@ describe VideosController do
     end
     
     describe "as user" do
-      before(:each) do
-        get :show, :id => @video
-      end
-      
-      it "should not show edit video link" do
-        response.should_not have_selector("a", :href => edit_video_path(@video))
+      describe "logged out" do
+        before(:each) do
+          get :show, :id => @video
+        end
+        
+        it "should not show edit video link" do
+          response.should_not have_selector("a", :href => edit_video_path(@video))
+        end
+
+        it "should not show delete video link" do
+          response.should_not have_selector("a", :href => video_path(@video) , :'data-method' => 'delete')
+        end
       end
 
-      it "should not show delete video link" do
-        response.should_not have_selector("a", :href => video_path(@video) , :'data-method' => 'delete')
-      end
+      describe "logged in" do
+        before(:each) do
+          test_sign_in(@user)
+          get :show, :id => @video
+        end
 
+        it "should not show edit video link" do
+          response.should_not have_selector("a", :href => edit_video_path(@video))
+        end
+
+        it "should not show delete video link" do
+          response.should_not have_selector("a", :href => video_path(@video) , :'data-method' => 'delete')
+        end
+      end
     end
   end
 
