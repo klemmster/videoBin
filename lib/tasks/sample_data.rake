@@ -5,7 +5,6 @@ namespace :db do
   task :populate => :environment do
     Rake::Task['db:reset'].invoke
     make_users
-
   end
 end
 
@@ -19,10 +18,13 @@ def make_users
     name = Faker::Name.name
     email = "example-#{n+1}@railstutorial.org"
     password = "password"
-    User.create!(:name => name,
+    user = User.create!(:name => name,
                  :email => email,
                  :password => password,
                  :password_confirmation => password)
+    user.videos.create!(:name => Faker::Company.bs,
+                        :description => Faker::Lorem.sentence,
+                        :origfile => File.new(Rails.root + 'spec/fixtures/videos/oceans-clip.mp4'))
   end
 end
 
