@@ -20,6 +20,24 @@
   </tr>
 </table>
 
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Beschreibung</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <% @user.videos.each do |video| %>
+    <tr>
+      <td><%= link_to video.name, video %></td>
+      <td><%= video.description %></td>
+      <td><%= link_to 'Edit', edit_video_path(video) unless not current_user?(@user) %></td>
+      <td><%= link_to 'Destroy', video, :confirm => 'Are you sure?',
+        :method => :delete unless not current_user?(@user) %></td>
+    </tr>
+  <% end %>
+</table>
 
 <%#= image_tag @user.avatar.url %>
 <%#= image_tag @user.avatar.url(:medium) %>

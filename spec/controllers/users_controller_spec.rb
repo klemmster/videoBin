@@ -114,6 +114,76 @@ describe UsersController do
       get :show, :id => @user
       response.should have_selector("h1>img", :class => "gravatar")
     end
+
+    describe "signed in" do
+    
+      describe "on own profile" do
+
+        before(:each) do
+          @video = Factory(:video, :user_id => @user)
+          @user.videos.push(@video)
+          test_sign_in(@user)
+          get :show, :id => @user
+        end
+
+        it "should show a users videos" do
+          response.should have_selector("a", :href => video_path(@video))
+        end
+
+        it "should show delete video link" do
+          response.should have_selector("a", :href =>video_path(@video), :'data-method' => 'delete')  
+        end
+
+        it "should show edit button for videos" do
+          response.should have_selector("a", :href => edit_video_path(@video))
+        end
+      end
+
+      describe "on other profile" do
+      
+        before(:each) do
+          @video = Factory(:video, :user_id => @user)
+          @user.videos.push(@video)
+          @otherUser = Factory(:user, :email => "yetanohter@mail.com")
+          test_sign_in(@otherUser)
+          get :show, :id => @user
+        end
+
+        it "should show a users videos" do
+          response.should have_selector("a", :href => video_path(@video))
+        end
+
+        it "should not show delete video" do
+          response.should_not have_selector("a", :href =>video_path(@video), :'data-method' => 'delete')  
+        end
+
+        it "should not show edit video link" do
+          response.should_not have_selector("a", :href => edit_video_path(@video))
+        end
+      end
+    end
+
+    describe "not logged in" do
+
+      before(:each) do
+        @video = Factory(:video, :user_id => @user)
+        @user.videos.push(@video)
+        get :show, :id => @user
+      end
+
+      it "should show a users videos" do
+        response.should have_selector("a", :href => video_path(@video))
+      end
+
+      it "should not show an edit button" do
+        response.should_not have_selector("a", :href => edit_video_path(@video))
+      end
+
+      it "should not show a delete button" do
+        response.should_not have_selector("a", :href =>video_path(@video), :'data-method' => 'delete')  
+      end
+
+    end
   end
 
   describe "DELETE 'destroy'" do
