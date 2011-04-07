@@ -61,6 +61,37 @@ describe VideosController do
       get :show, :id => @video 
       response.should be_success
     end
+
+    describe "as admin" do
+      before(:each) do
+        @admin = Factory(:user, :email => "Admin@mail.com", :admin => true)
+        test_sign_in(@admin)
+        get :show, :id => @video
+      end
+
+      it "should show edit video link" do
+        response.should have_selector("a", :href => edit_video_path(@video))
+      end
+
+      it "should show delete video link" do
+        response.should have_selector("a", :href => video_path(@video) , :'data-method' => 'delete')
+      end
+    end
+    
+    describe "as user" do
+      before(:each) do
+        get :show, :id => @video
+      end
+      
+      it "should not show edit video link" do
+        response.should_not have_selector("a", :href => edit_video_path(@video))
+      end
+
+      it "should not show delete video link" do
+        response.should_not have_selector("a", :href => video_path(@video) , :'data-method' => 'delete')
+      end
+
+    end
   end
 
   describe "GET 'delete'" do

@@ -182,8 +182,8 @@ describe UsersController do
       it "should not show a delete button" do
         response.should_not have_selector("a", :href =>video_path(@video), :'data-method' => 'delete')  
       end
-
     end
+
   end
 
   describe "DELETE 'destroy'" do

@@ -1,4 +1,7 @@
 <h1><%= @video.name %></h1>
+<% if current_user %>
+  <%= link_to 'Destroy', @video, :confirm => 'Are you sure?', :method => :delete unless not current_user.admin? %>
+<% end %>
 <%= render 'showVideo', :video => @video %>
 <% if not @video.still_processing? %>
 <div><code><%= @embed %></code></div>
