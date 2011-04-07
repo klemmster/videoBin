@@ -1,6 +1,4 @@
 <h1>Upload</h1>
-<p>Find me in app/views/videos/new.html.erb</p>
-
 
 <%= form_for @video, :html => { :multipart => true }  do |form| %>
   <%= render 'shared/error_messages', :object =>@video %>
@@ -22,7 +20,6 @@
     <div class="actions">
       <%= form.submit "Upload" %>
     </div>
-
 
 <% end %>
 

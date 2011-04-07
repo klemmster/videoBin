@@ -116,7 +116,13 @@ describe VideosController do
       response.should redirect_to(signin_path)
     end
 
-    it "should refuse deletion if not users video"
+    it "should refuse deletion if not users video" do
+      @user2 = Factory(:user, :email => "user2@mail.com")
+      test_sign_in(@user2)
+      lambda do
+        delete :destroy, :id => @video
+      end.should_not change(Video,:count).by(1)
+    end
 
     it "should delete a video" do
       lambda do
