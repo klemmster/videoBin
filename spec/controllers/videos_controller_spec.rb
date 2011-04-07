@@ -24,7 +24,6 @@ describe VideosController do
       get :new
       response.should be_success
     end
-
   end
 
   describe "Post" do
@@ -43,8 +42,8 @@ describe VideosController do
             post :create, :video => @attr
           end.should change(Video, :count).by(1)
         end
-
       end
+      
       describe "Logged Out" do
         it "should not create a new video" do
           lambda do
@@ -108,13 +107,12 @@ describe VideosController do
   
   describe "Get Index" do
     describe "as SignedIn user" do
-      before(:each) to
+      before(:each) do
           test_sign_in(@user)
           get :index
       end
   
       describe "Success" do
-
         it "should link to a video" do
           response.should have_selector("a", :href => video_path(@video))
         end
@@ -122,15 +120,13 @@ describe VideosController do
         it "should link to a video_owner" do
           response.should have_selector("a", :href => user_path(@user)) 
         end
-
       end
 
       describe "Failure" do
-
         it "should not link to edit video" do
           response.should_not have_selector("a", :href => edit_video_path(@video))
         end
-
+        
         it "should_not link to delete a video" do
           response.should_not have_selector("a", :href => video_path(@video), :'data-method' => 'delete')
         end
@@ -143,7 +139,6 @@ describe VideosController do
       end
 
       describe "success" do
-
         it "should link to a video" do
           response.should have_selector("a", :href => video_path(@video))
         end
@@ -157,6 +152,7 @@ describe VideosController do
         it "should not show an edit link" do
           response.should_not have_selector("a", :href => edit_video_path(@video))
         end
+
         it "should not show a delete link" do
           response.should_not have_selector("a", :href => video_path(@video), :'data-method' => 'delete')
         end
