@@ -43,6 +43,7 @@ class Video < ActiveRecord::Base
                                 :processors => [:video_thumbnail ]
 
   process_in_background :origfile
+  default_scope :order => 'videos.updated_at DESC'
   before_destroy :remove_attachments
 
   def still_processing?
