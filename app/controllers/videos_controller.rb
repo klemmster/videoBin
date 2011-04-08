@@ -2,7 +2,7 @@ class VideosController < ApplicationController
   before_filter :authenticate, :only => [:new, :create, :destroy, :edit, :update]
 
   def index
-    @videos = Video.all
+    @videos = Video.paginate(:page => params[:page])
   end
 
   def create
